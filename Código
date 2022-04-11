@@ -1,0 +1,1597 @@
+import numpy as np
+from matplotlib import pyplot as plt
+import cv2 
+import math
+import skimage
+from skimage import io
+
+
+'''
+def imag1(c_imag1,c_imag2):
+    #------------------------------Para la imagen 1--------------------------------#
+    #------------------------------------------------------------------------------#
+
+
+    #---------------------------#ECUALIZACION IMAGEN 1 ---------------------------------#
+    #ECUALIZACION IMAGEN 1 
+    ecu_img1 = cv2.cvtColor(c_imag1,cv2.COLOR_BGR2YUV)
+    ecu_img1[:,:,0] = cv2.equalizeHist(ecu_img1[:,:,0])
+    res_ecu_img1= cv2.cvtColor(ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Imagen1',res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        hist_img1 = cv2.calcHist([c_imag1], [i], None, [256], [0, 256])
+        plt.plot(hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Imagen1')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        hist_ecu_img1 = cv2.calcHist([res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma ecualizacion Imagen1')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Imagen1') #SE CIERRA ECUALIZACION IMAGEN 1
+'''
+
+'''
+def imag2(c_imag1,c_imag2):
+    #------------------------------Para la imagen 2--------------------------------#
+    #------------------------------------------------------------------------------#
+
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    ecu_img2 = cv2.cvtColor(c_imag2,cv2.COLOR_BGR2YUV)
+    ecu_img2[:,:,0] = cv2.equalizeHist(ecu_img2[:,:,0])
+    res_ecu_img2= cv2.cvtColor(ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Imagen2',res_ecu_img2) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        hist_img2 = cv2.calcHist([c_imag2], [i], None, [256], [0, 256])
+        plt.plot(hist_img2, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Imagen2')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        hist_ecu_img2 = cv2.calcHist([res_ecu_img2], [i], None, [256], [0, 256])
+        plt.plot(hist_ecu_img2, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma ecualizacion Imagen1')
+    plt.show()
+
+    cv2.waitKey(0) #Retardo
+    cv2.alldestroyWindow('Ecualizacion_Imagen2')
+'''
+
+'''
+def SUMA(c_imag1,c_imag2):
+    #------------------------------Para el primer método de suma--------------------------------#
+
+    #Metodologia 1
+    sum_imag = cv2.add(c_imag1,c_imag2)
+    cv2.imshow('Suma',sum_imag)
+
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    sum_ecu_img1 = cv2.cvtColor(sum_imag,cv2.COLOR_BGR2YUV)
+    sum_ecu_img1[:,:,0] = cv2.equalizeHist(sum_ecu_img1[:,:,0])
+    sum_res_ecu_img1= cv2.cvtColor(sum_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Suma1',sum_res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+    #---------------------------HISTOGRAMAS SUMA 1---------------------------------#
+    #HISTOGRAMAS SUMA 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        sum_hist_img1 = cv2.calcHist([sum_imag], [i], None, [256], [0, 256])
+        plt.plot(sum_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Suma1')
+    plt.show()
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION SUMA 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION SUMA 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        sum_hist_ecu_img1 = cv2.calcHist([sum_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(sum_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Suma1')
+    plt.show()
+    
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Suma1')
+
+
+def SUMA2(c_imag1,c_imag2):
+    #------------------------------Para el primer método de suma--------------------------------#
+
+    #Metodologia 2
+    sum2_imag = c_imag1 + c_imag2
+#   cv2.imshow('Suma2',sum2_imag)
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    sum2_ecu_img1 = cv2.cvtColor(sum2_imag,cv2.COLOR_BGR2YUV)
+    sum2_ecu_img1[:,:,0] = cv2.equalizeHist(sum2_ecu_img1[:,:,0])
+    sum2_res_ecu_img1= cv2.cvtColor(sum2_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Suma2',sum2_res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+    #---------------------------HISTOGRAMAS SUMA 2---------------------------------#
+    #HISTOGRAMAS SUMA 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        sum2_hist_img1 = cv2.calcHist([sum2_imag], [i], None, [256], [0, 256])
+        plt.plot(sum2_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Suma2')
+    plt.show()
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION SUMA 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION SUMA 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        sum2_hist_ecu_img1 = cv2.calcHist([sum2_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(sum2_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Suma2')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Suma2')
+
+def SUMA3(c_imag1,c_imag2):
+    #------------------------------Para el primer método de suma--------------------------------#
+
+    #Metodologia 3
+    sum3_imag = cv2.addWeighted(c_imag1, 0.5, c_imag2, 0.5, 0)
+#   cv2.imshow('Suma3',sum3_imag)
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    sum3_ecu_img1 = cv2.cvtColor(sum3_imag,cv2.COLOR_BGR2YUV)
+    sum3_ecu_img1[:,:,0] = cv2.equalizeHist(sum3_ecu_img1[:,:,0])
+    sum3_res_ecu_img1= cv2.cvtColor(sum3_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Suma3',sum3_res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+    #---------------------------HISTOGRAMAS SUMA 2---------------------------------#
+    #HISTOGRAMAS SUMA 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        sum3_hist_img1 = cv2.calcHist([sum3_imag], [i], None, [256], [0, 256])
+        plt.plot(sum3_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Suma3')
+    plt.show()
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION SUMA 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION SUMA 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        sum3_hist_ecu_img1 = cv2.calcHist([sum3_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(sum3_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Suma3')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Suma3')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def RESTA(c_imag1,c_imag2):
+    #------------------------------Para el primer método de resta--------------------------------#
+    #------------------------------------------------------------------------------#
+
+    #Metodologia 1
+    rest_imag = cv2.subtract(c_imag1,c_imag2)
+    cv2.imshow('Resta',rest_imag)
+
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    rest_ecu_img1 = cv2.cvtColor(rest_imag,cv2.COLOR_BGR2YUV)
+    rest_ecu_img1[:,:,0] = cv2.equalizeHist(rest_ecu_img1[:,:,0])
+    rest_res_ecu_img1= cv2.cvtColor(rest_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Resta1',rest_res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMA
+
+
+    #---------------------------HISTOGRAMAS Resta 1---------------------------------#
+    #HISTOGRAMAS SUMA 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        rest_hist_img1 = cv2.calcHist([rest_imag], [i], None, [256], [0, 256])
+        plt.plot(rest_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Resta1')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION SUMA 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Resta 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        res_hist_ecu_img1 = cv2.calcHist([rest_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(res_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Resta1')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Resta1') 
+'''
+'''
+def RESTA2(c_imag1,c_imag2):
+    #------------------------------Para el segundo método de resta--------------------------------#
+    #------------------------------------------------------------------------------#
+
+    #Metodologia 2
+    Sustraccion = cv2.subtract(c_imag1,c_imag2)
+    cv2.imshow('Resta2',Sustraccion)
+
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    rest2_ecu_img1 = cv2.cvtColor(Sustraccion,cv2.COLOR_BGR2YUV)
+    rest2_ecu_img1[:,:,0] = cv2.equalizeHist(rest2_ecu_img1[:,:,0])
+    rest2_res_ecu_img1= cv2.cvtColor(rest2_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Resta2',rest2_res_ecu_img1) 
+
+
+    #---------------------------HISTOGRAMAS Resta 2---------------------------------#
+    #HISTOGRAMAS Resta 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        rest2_hist_img1 = cv2.calcHist([Sustraccion], [i], None, [256], [0, 256])
+        plt.plot(rest2_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Resta2')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION RESTA 2---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Resta 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        res2_hist_ecu_img1 = cv2.calcHist([rest2_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(res2_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Resta2')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Resta2')
+'''
+'''
+def RESTA3(c_imag1,c_imag2):
+    #------------------------------Para el tercer método de resta--------------------------------#
+    #------------------------------------------------------------------------------#
+
+    #Metodologia 3
+    Absdiff = cv2.absdiff(c_imag1,c_imag2)
+    cv2.imshow('Absdiff',Absdiff)
+
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    rest3_ecu_img1 = cv2.cvtColor(Absdiff,cv2.COLOR_BGR2YUV)
+    rest3_ecu_img1[:,:,0] = cv2.equalizeHist(rest3_ecu_img1[:,:,0])
+    rest3_res_ecu_img1= cv2.cvtColor(rest3_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Resta3',rest3_res_ecu_img1) 
+
+
+    #---------------------------HISTOGRAMAS Resta 3---------------------------------#
+    #HISTOGRAMAS Resta 3
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        rest3_hist_img1 = cv2.calcHist([Absdiff], [i], None, [256], [0, 256])
+        plt.plot(rest3_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Resta3')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION RESTA 3---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Resta 3
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        res3_hist_ecu_img1 = cv2.calcHist([rest3_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(res3_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Resta3')
+    plt.show()
+
+    cv2.waitKey(0) #Retardo
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Division(c_imag1,c_imag2):
+    #------------------------------Para el primer método de división--------------------------------#
+    #------------------------------------------------------------------------------#
+
+    #Metodologia 1
+    div_imag = cv2.divide(c_imag1, c_imag2)
+    cv2.imshow('División',div_imag)
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    div_ecu_img1 = cv2.cvtColor(div_imag,cv2.COLOR_BGR2YUV)
+    div_ecu_img1[:,:,0] = cv2.equalizeHist(div_ecu_img1[:,:,0])
+    div_res_ecu_img1= cv2.cvtColor(div_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Division1',div_res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMA
+
+
+    #---------------------------HISTOGRAMAS Resta 1---------------------------------#
+    #HISTOGRAMAS SUMA 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        div_hist_img1 = cv2.calcHist([div_imag], [i], None, [256], [0, 256])
+        plt.plot(div_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma División1')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION SUMA 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Resta 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        div_hist_ecu_img1 = cv2.calcHist([div_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(div_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizaciónDivisión1')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Division1')
+'''
+'''
+#Escala de grises
+def Division2(c_imag1,c_imag2):
+    #------------------------------Para el segundo método de división--------------------------------#
+    #------------------------------------------------------------------------------#
+
+    #Metodologia 2
+    divi2_imag = c_imag1 / c_imag2
+    cv2.imshow('División2',divi2_imag)
+
+    #---------------------ECUALIZACION IMAGEN---------------------1 
+    div2_ecu_img1 = cv2.cvtColor(divi2_imag,cv2.COLOR_BGR2YUV)
+    div2_ecu_img1[:,:,0] = cv2.equalizeHist(div2_ecu_img1[:,:,0])
+    div2_res_ecu_img1= cv2.cvtColor(div2_ecu_img1,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Division2',div2_res_ecu_img1) #MUESTRA IMAGEN ECUALIZADA DE LA IMA
+
+
+    #---------------------------HISTOGRAMAS Division 2---------------------------------#
+    #HISTOGRAMAS División 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        div2_hist_img1 = cv2.calcHist([divi2_imag], [i], None, [256], [0, 256])
+        plt.plot(div2_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma División2')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION SUMA 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION DIVISIÓN 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        div2_hist_ecu_img1 = cv2.calcHist([div2_res_ecu_img1], [i], None, [256], [0, 256])
+        plt.plot(div2_hist_ecu_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizaciónDivisión2')
+    plt.show()
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Division2')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+
+'''
+def Multiplicacion(c_imag1, c_imag2):
+    #------------------------------Para la multiplicación  2--------------------------------#
+    #------------------------------------------------------------------------------#
+    mul_imag = cv2.multiply(c_imag1, c_imag2)
+    cv2.imshow('Multiplicación',mul_imag)
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    mul_ecu_img2 = cv2.cvtColor(mul_imag,cv2.COLOR_BGR2YUV)
+    mul_ecu_img2[:,:,0] = cv2.equalizeHist(mul_ecu_img2[:,:,0])
+    mul_res_ecu_img= cv2.cvtColor(mul_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Imagen2',mul_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        mul_hist_img1 = cv2.calcHist([mul_imag], [i], None, [256], [0, 256])
+        plt.plot(mul_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histogram Multiplicacion')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        mul_hist_ecu_img = cv2.calcHist([mul_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(mul_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Multiplicacion')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Multiplicacion')
+
+'''
+'''
+def Multiplicacion2(c_imag1, c_imag2):
+    #------------------------------Para la multiplicación  2--------------------------------#
+    #------------------------------------------------------------------------------#
+    multi_imag = c_imag1 * c_imag2
+    cv2.imshow('Multiplicación',multi_imag)
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    mul2_ecu_img2 = cv2.cvtColor(multi_imag,cv2.COLOR_BGR2YUV)
+    mul2_ecu_img2[:,:,0] = cv2.equalizeHist(mul2_ecu_img2[:,:,0])
+    mul2_res_ecu_img= cv2.cvtColor(mul2_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Imagen2',mul2_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 2--------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        mul2_hist_img1 = cv2.calcHist([multi_imag], [i], None, [256], [0, 256])
+        plt.plot(mul2_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histogram Multiplicacion2')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 2---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION MULTIPLICACIÓN 2
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        mul2_hist_ecu_img = cv2.calcHist([mul2_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(mul2_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Multiplicacion2')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Multiplicacion2')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+
+#ESCALA DE GRISES
+def Raiz(c_imag1,c_imag2):
+    #------------------------------Para la raiz ----------------------------------#
+    #------------------------------------------------------------------------------#
+    Raiz = (img1**(0.5))
+    cv2.imshow('Raiz',Raiz)
+
+    cv2.imwrite('RaizG.png',Raiz)
+
+    RaizG = cv2.imread('RaizG.png')
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    ra_ecu_img2 = cv2.cvtColor(RaizG,cv2.COLOR_BGR2YUV)
+    ra_ecu_img2[:,:,0] = cv2.equalizeHist(ra_ecu_img2[:,:,0])
+    ra_res_ecu_img= cv2.cvtColor(ra_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_raiz',ra_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        ra_hist_img1 = cv2.calcHist([RaizG], [i], None, [256], [0, 256])
+        plt.plot(ra_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma raiz')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Raiz
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        ra_hist_ecu_img = cv2.calcHist([ra_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(ra_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion raiz')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_raiz')
+
+
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+
+
+
+def Logaritmo(c_imag1,c_imag2):
+    #------------------------------Para el Logaritmo  --------------------------------#
+    #------------------------------------------------------------------------------#
+    c = 255 / np.log(1 + np.max(img1))
+    log_image = c * (np.log(img1 + 1)) 
+    log_image = np.array(log_image, dtype = np.uint8) 
+    cv2.imshow('Logaritmo',log_image) 
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    log_ecu_img2 = cv2.cvtColor(log_image,cv2.COLOR_BGR2YUV)
+    log_ecu_img2[:,:,0] = cv2.equalizeHist(log_ecu_img2[:,:,0])
+    log_res_ecu_img= cv2.cvtColor(log_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Logaritmo',log_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        log_hist_img1 = cv2.calcHist([log_image], [i], None, [256], [0, 256])
+        plt.plot(log_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Logaritmo')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        log_hist_ecu_img = cv2.calcHist([log_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(log_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Logaritmo')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Logaritmo')
+
+
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Derivada(c_imag1,c_imag2):
+    #------------------------------Para la derivada --------------------------------#
+    #------------------------------------------------------------------------------#
+    Derivada = cv2.Laplacian(img1,cv2.CV_32F)
+    cv2.imshow('Derivada',Derivada)
+
+    cv2.imwrite('DerivadaG.png',Derivada)
+
+    DerivadaG = cv2.imread('DerivadaG.png')
+
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    dev_ecu_img2 = cv2.cvtColor(DerivadaG,cv2.COLOR_BGR2YUV)
+    dev_ecu_img2[:,:,0] = cv2.equalizeHist(dev_ecu_img2[:,:,0])
+    dev_res_ecu_img= cv2.cvtColor(dev_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Derivada',dev_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dev_hist_img1 = cv2.calcHist([DerivadaG], [i], None, [256], [0, 256])
+        plt.plot(dev_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Derivada')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dev_hist_ecu_img = cv2.calcHist([dev_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(dev_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Derivada')
+    plt.show()
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Derivada')
+'''
+
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Potencia(c_imag1,c_imag2):
+    #------------------------------Para la potencia  --------------------------------#
+    #------------------------------------------------------------------------------#
+    c = 255 / np.log(1 + np.max(img1)) 
+    Potencia = np.zeros(c_imag1.shape, c_imag1.dtype)
+    g = 0.5
+    Potencia = c * np.power(c_imag1,g)
+    maxi1 = np.amax(Potencia)
+    Potencia = np.uint8(Potencia/maxi1 * 255)
+    cv2.imshow('Potencia',Potencia)
+
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    pot_ecu_img2 = cv2.cvtColor(Potencia,cv2.COLOR_BGR2YUV)
+    pot_ecu_img2[:,:,0] = cv2.equalizeHist(pot_ecu_img2[:,:,0])
+    pot_res_ecu_img= cv2.cvtColor(pot_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Potencia',pot_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        pot_hist_img1 = cv2.calcHist([Potencia], [i], None, [256], [0, 256])
+        plt.plot(pot_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Potencia')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        pot_hist_ecu_img = cv2.calcHist([pot_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(pot_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Potencia')
+    plt.show()
+    
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Potencia')
+    '''
+
+'''
+def Potencia2(c_imag1,c_imag2):
+    #------------------------------Para la potencia2  --------------------------------#
+    #------------------------------------------------------------------------------#
+    Pow = cv2.pow(c_imag1,2)
+    cv2.imshow('Pow',Pow)
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    pow_ecu_img2 = cv2.cvtColor(Pow,cv2.COLOR_BGR2YUV)
+    pow_ecu_img2[:,:,0] = cv2.equalizeHist(pow_ecu_img2[:,:,0])
+    pow_res_ecu_img= cv2.cvtColor(pow_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Potencia2',pow_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        pow_hist_img1 = cv2.calcHist([Pow], [i], None, [256], [0, 256])
+        plt.plot(pow_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Potencia2')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        pow_hist_ecu_img = cv2.calcHist([pow_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(pow_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Potencia2')
+    plt.show()
+    
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Potencia2')
+'''
+'''
+def Potencia3(c_imag1,c_imag2):
+    #------------------------------Para la potencia 3 --------------------------------#
+    #------------------------------------------------------------------------------#
+    Pote=(c_imag1^2)
+    cv2.imshow('Pote',Pote)
+
+    #---------------------------#ECUALIZACION IMAGEN 3 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    pot3_ecu_img2 = cv2.cvtColor(Pote,cv2.COLOR_BGR2YUV)
+    pot3_ecu_img2[:,:,0] = cv2.equalizeHist(pot3_ecu_img2[:,:,0])
+    pot3_res_ecu_img= cv2.cvtColor(pot3_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Potencia',pot3_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 3---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        pot3_hist_img1 = cv2.calcHist([Pote], [i], None, [256], [0, 256])
+        plt.plot(pot3_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Potencia3')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 3---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 3
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        pot3_hist_ecu_img = cv2.calcHist([pot3_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(pot3_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Potencia3')
+    plt.show()
+    
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Potencia3')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Conjuncion(c_imag1,c_imag2):
+    #------------------------------Para la Conjunción  --------------------------------#
+    #------------------------------------------------------------------------------#
+    conj = cv2.bitwise_and(c_imag1,c_imag2)
+    cv2.imshow('Conjuncion', conj)
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    conj_ecu_img2 = cv2.cvtColor(conj,cv2.COLOR_BGR2YUV)
+    conj_ecu_img2[:,:,0] = cv2.equalizeHist(conj_ecu_img2[:,:,0])
+    conj_res_ecu_img= cv2.cvtColor(conj_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Conjunción',conj_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        conj_hist_img1 = cv2.calcHist([conj], [i], None, [256], [0, 256])
+        plt.plot(conj_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Conjunción')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        conj_hist_ecu_img = cv2.calcHist([conj_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(conj_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion de la conjunción')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Conjunción')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Disyuncion(c_imag1,c_imag2):
+    #------------------------------Para la disyunción  --------------------------------#
+    #------------------------------------------------------------------------------#
+    disy = cv2.bitwise_or(c_imag1,c_imag2)
+    cv2.imshow('Disyuncion', disy)
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    disy_ecu_img2 = cv2.cvtColor(disy,cv2.COLOR_BGR2YUV)
+    disy_ecu_img2[:,:,0] = cv2.equalizeHist(disy_ecu_img2[:,:,0])
+    disy_res_ecu_img= cv2.cvtColor(disy_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Logaritmo',disy_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        disy_hist_img1 = cv2.calcHist([disy], [i], None, [256], [0, 256])
+        plt.plot(disy_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Disyunción')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        disy_hist_ecu_img = cv2.calcHist([disy_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(disy_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualización Disyunción')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Disyunción')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Negacion(c_imag1,c_imag2):
+    #------------------------------Para la Negación  --------------------------------#
+    #------------------------------------------------------------------------------#
+    height, width, _ = c_imag1.shape
+
+    for i in range(0, height - 1):
+        for j in range(0, width -1):
+            pixel = c_imag1[i,j]
+            pixel[0] = 255 - pixel[0]
+            pixel[1] = 255 - pixel[1]
+            pixel[2] = 255 - pixel[2]
+            c_imag1[i,j] = pixel
+    cv2.imshow('Negacion',c_imag1) 
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    neg_ecu_img2 = cv2.cvtColor(c_imag1,cv2.COLOR_BGR2YUV)
+    neg_ecu_img2[:,:,0] = cv2.equalizeHist(neg_ecu_img2[:,:,0])
+    neg_res_ecu_img= cv2.cvtColor(neg_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Negación',neg_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        neg_hist_img1 = cv2.calcHist([c_imag1], [i], None, [256], [0, 256])
+        plt.plot(neg_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Negación')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        neg_hist_ecu_img = cv2.calcHist([neg_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(neg_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Negación')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Negación')
+'''
+
+'''
+def Negacion2(c_imag1,c_imag2):
+    #------------------------------Para la Negación  --------------------------------#
+    #------------------------------------------------------------------------------#
+    img_neg = 1 - c_imag1
+    cv2.imshow('Negacion 2',img_neg)
+
+    #---------------------------#ECUALIZACION IMAGEN 2 ---------------------------------#
+    #ECUALIZACION IMAGEN 2
+    neg2_ecu_img2 = cv2.cvtColor(img_neg,cv2.COLOR_BGR2YUV)
+    neg2_ecu_img2[:,:,0] = cv2.equalizeHist(neg2_ecu_img2[:,:,0])
+    neg2_res_ecu_img= cv2.cvtColor(neg2_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Negación 2',neg2_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS IMAGEN 1---------------------------------#
+    #HISTOGRAMAS IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        neg2_hist_img1 = cv2.calcHist([img_neg], [i], None, [256], [0, 256])
+        plt.plot(neg2_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Negación 2')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1{
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        neg2_hist_ecu_img = cv2.calcHist([neg2_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(neg2_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Negación 2')
+    plt.show()
+    #}
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Negación 2')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Translación(c_imag1,c_imag2):
+    #------------------------------Para Translación  --------------------------------#
+    #------------------------------------------------------------------------------#
+
+    ancho = c_imag1.shape[1] #columnas
+    alto = c_imag1.shape[0] # filas
+    # Traslación
+    M = np.float32([[1,0,100],[0,1,150]]) #Construccion de la matriz
+    imageOut = cv2.warpAffine(c_imag1,M,(ancho,alto))
+    cv2.imshow('Imagen de entrada',c_imag1)
+    cv2.imshow('Imagen de salida',imageOut)
+
+
+    #---------------------------#ECUALIZACION Translación ---------------------------------#
+    #ECUALIZACION Translación
+    imageOut_ecu_img2 = cv2.cvtColor(imageOut,cv2.COLOR_BGR2YUV)
+    imageOut_ecu_img2[:,:,0] = cv2.equalizeHist(imageOut_ecu_img2[:,:,0])
+    imageOut_res_ecu_img= cv2.cvtColor(imageOut_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Translación',imageOut_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS Translación---------------------------------#
+    #HISTOGRAMAS Translación
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        imageOut_hist_img1 = cv2.calcHist([imageOut], [i], None, [256], [0, 256])
+        plt.plot(imageOut_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Translación')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        imageOut_hist_ecu_img = cv2.calcHist([imageOut_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(imageOut_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Translación')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Translación')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Rescalado(c_imag1,c_imag2):
+    #------------------------------Para Rescalado --------------------------------#
+    #------------------------------------------------------------------------------#
+
+    Rescalado = cv2.resize(c_imag1, dsize=(350, 350))
+    cv2.imshow('Rescalado',Rescalado)
+
+
+    #---------------------------#ECUALIZACION Rescalado ---------------------------------#
+    #ECUALIZACION Rescalado
+    Resc_ecu_img2 = cv2.cvtColor(Rescalado,cv2.COLOR_BGR2YUV)
+    Resc_ecu_img2[:,:,0] = cv2.equalizeHist(Resc_ecu_img2[:,:,0])
+    Resc_res_ecu_img= cv2.cvtColor(Resc_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    #cv2.imshow('Ecualizacion_Rescalado',Resc_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+    combinado17 = np.concatenate((c_imag1, Resc_res_ecu_img, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('Ecualizacion_Rescalado en el centro', combinado17)
+    
+
+
+    #---------------------------#HISTOGRAMAS Rescalado---------------------------------#
+    #HISTOGRAMAS Rescalado
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        Resc_hist_img1 = cv2.calcHist([Rescalado], [i], None, [256], [0, 256])
+        plt.plot(Resc_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Rescalado')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION Rescalado---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Rescalado
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        Resc_hist_ecu_img = cv2.calcHist([Resc_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(Resc_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Rescalado')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Rescalado')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Translaciónafin(c_imag1,c_imag2):
+    #------------------------------Para Translación  --------------------------------#
+    #------------------------------------------------------------------------------#
+
+    rows, cols, ch = c_imag1.shape
+    pts1 = np.float32([[50, 50],
+                           [200, 50], 
+                           [50, 200]])
+          
+    pts2 = np.float32([[10, 100],
+                           [200, 50], 
+                           [100, 250]])
+
+    M = cv2.getAffineTransform(pts1, pts2)
+    dst = cv2.warpAffine(c_imag1, M, (cols, rows))
+
+
+   #cv2.imshow('Imagen de entrada',c_imag1)
+   #cv2.imshow('Imagen de salida fff',dst)
+       
+    #---------------------------#ECUALIZACION Translación a fin ---------------------------------#
+    #ECUALIZACION Translación a fin
+    dst_ecu_img2 = cv2.cvtColor(dst,cv2.COLOR_BGR2YUV)
+    dst_ecu_img2[:,:,0] = cv2.equalizeHist(dst_ecu_img2[:,:,0])
+    dst_res_ecu_img= cv2.cvtColor(dst_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Translación a fin',dst_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+    combinado17 = np.concatenate((c_imag1, dst_res_ecu_img, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('Ecualizacion_Translación en el centro', combinado17)
+
+
+    #---------------------------#HISTOGRAMAS Translación a fin---------------------------------#
+    #HISTOGRAMAS Translación a fin
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dst_hist_img1 = cv2.calcHist([dst], [i], None, [256], [0, 256])
+        plt.plot(dst_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Translación a fin')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dst_hist_ecu_img = cv2.calcHist([dst_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(dst_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Translación a fin')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Translación a fin')
+'''
+'''
+def Translaciónafin2(c_imag1,c_imag2):
+    #------------------------------Para Translación  --------------------------------#
+    #------------------------------------------------------------------------------#
+
+    ancho = c_imag1.shape[1] #columnas
+    alto = c_imag1.shape[0] # filas
+    M = np.float32([[1,0,100],[0,1,250]])
+    imageOut2 = cv2.warpAffine(c_imag1,M,(ancho,alto))
+    cv2.imshow('Imagen de entrada',c_imag1)
+    cv2.imshow('Imagen de salida',imageOut2)
+
+
+   #cv2.imshow('Imagen de entrada',c_imag1)
+   #cv2.imshow('Imagen de salida fff',dst)
+       
+    #---------------------------#ECUALIZACION Translación a fin ---------------------------------#
+    #ECUALIZACION Translación a fin
+    dst2_ecu_img2 = cv2.cvtColor(imageOut2,cv2.COLOR_BGR2YUV)
+    dst2_ecu_img2[:,:,0] = cv2.equalizeHist(dst2_ecu_img2[:,:,0])
+    dst2_res_ecu_img= cv2.cvtColor(dst2_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Translación a fin',dst2_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+    combinado17 = np.concatenate((c_imag1, dst2_res_ecu_img, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('Ecualizacion_Translación en el centro', combinado17)
+
+
+    #---------------------------#HISTOGRAMAS Translación a fin---------------------------------#
+    #HISTOGRAMAS Translación a fin
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dst2_hist_img1 = cv2.calcHist([imageOut2], [i], None, [256], [0, 256])
+        plt.plot(dst2_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Translación a fin 2')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dst2_hist_ecu_img = cv2.calcHist([dst2_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(dst2_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Translación a fin2')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Translación a fin2')
+'''
+'''
+def Translaciónafin3(c_imag1,c_imag2):
+    #------------------------------Para Translación  --------------------------------#
+    #------------------------------------------------------------------------------#
+    c_imag1 = cv2.resize(img1, dsize = (300, 300), interpolation=cv2.INTER_CUBIC)
+    c_imag2 = cv2.resize(img2, dsize = (300, 300), interpolation=cv2.INTER_CUBIC)
+
+
+    rows,cols,ch = c_imag1.shape
+     
+    pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]])
+    pts2 = np.float32([[0,0],[300,0],[0,300],[300,300]])
+
+
+    M = cv2.getPerspectiveTransform(pts1,pts2)
+     
+    dst3 = cv2.warpPerspective(c_imag1,M,(300,300))
+
+
+   #cv2.imshow('Imagen de entrada',c_imag1)
+   #cv2.imshow('Imagen de salida fff',dst)
+       
+    #---------------------------#ECUALIZACION Translación a fin ---------------------------------#
+    #ECUALIZACION Translación a fin
+    dst3_ecu_img2 = cv2.cvtColor(dst3,cv2.COLOR_BGR2YUV)
+    dst3_ecu_img2[:,:,0] = cv2.equalizeHist(dst3_ecu_img2[:,:,0])
+    dst3_res_ecu_img= cv2.cvtColor(dst3_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Translación a fin3',dst3_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+    combinado17 = np.concatenate((c_imag1, dst3_res_ecu_img, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('Ecualizacion_Translación en el centro3', combinado17)
+
+
+    #---------------------------#HISTOGRAMAS Translación a fin---------------------------------#
+    #HISTOGRAMAS Translación a fin
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dst3_hist_img1 = cv2.calcHist([dst3], [i], None, [256], [0, 256])
+        plt.plot(dst3_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Translación a fin3')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        dst3_hist_ecu_img = cv2.calcHist([dst3_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(dst3_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Translación a fin 3')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Translación a fin 3')
+'''
+
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Rotación(c_imag1,c_imag2):
+    #------------------------------Para Rotación  --------------------------------#
+    #------------------------------------------------------------------------------#
+    
+    #---------------------------#ECUALIZACION Rotación ---------------------------------#
+    #ECUALIZACION Rotación
+    c_imag1_ecu_img2 = cv2.cvtColor(c_imag1[::-1],cv2.COLOR_BGR2YUV)
+    c_imag1_ecu_img2[:,:,0] = cv2.equalizeHist(c_imag1_ecu_img2[:,:,0])
+    c_imag1_res_ecu_img= cv2.cvtColor(c_imag1_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Rotación',c_imag1_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    combinado17 = np.concatenate((c_imag1, c_imag1_res_ecu_img, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('Ecualizacion_Rotación en el centro', combinado17)
+
+
+    #---------------------------#HISTOGRAMAS Rotación---------------------------------#
+    #HISTOGRAMAS Rotación
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        c_imag1_hist_img1 = cv2.calcHist([c_imag1[::-1]], [i], None, [256], [0, 256])
+        plt.plot(c_imag1_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Rotación')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION Rotación---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Rotación
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        c_imag1_hist_ecu_img = cv2.calcHist([c_imag1_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(c_imag1_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Rotación')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Rotación')
+'''
+'''
+def Rotación2(c_imag1,c_imag2):
+    #------------------------------Para Rotación 2  --------------------------------#
+    #------------------------------------------------------------------------------#
+    ancho = c_imag1.shape[1] #columnas
+    alto = c_imag1.shape[0] # filas
+    Rotacion = cv2.getRotationMatrix2D((ancho//2,alto//2),180,1)
+    imageOutr2 = cv2.warpAffine(c_imag1,Rotacion,(ancho,alto))
+    cv2.imshow('Rotacion2',imageOutr2)
+    #---------------------------#ECUALIZACION Rotación 2 ---------------------------------#
+    #ECUALIZACION Rotación
+    c_imag12_ecu_img2 = cv2.cvtColor(imageOutr2[::-1],cv2.COLOR_BGR2YUV)
+    c_imag12_ecu_img2[:,:,0] = cv2.equalizeHist(c_imag12_ecu_img2[:,:,0])
+    c_imag12_res_ecu_img= cv2.cvtColor(c_imag12_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Rotación2',c_imag12_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    combinado17 = np.concatenate((c_imag1, c_imag12_res_ecu_img, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('Ecualizacion_Rotación en el centro2', combinado17)
+
+
+    #---------------------------#HISTOGRAMAS Rotación 2---------------------------------#
+    #HISTOGRAMAS Rotación
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        c_imag12_hist_img1 = cv2.calcHist([imageOutr2[::-1]], [i], None, [256], [0, 256])
+        plt.plot(c_imag12_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Rotación2')
+    plt.show()
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION Rotación---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION Rotación
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        c_imag12_hist_ecu_img = cv2.calcHist([c_imag12_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(c_imag12_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Rotación 2')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Rotación 2')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Transpuesta(c_imag1,c_imag2):
+    #------------------------------Para Transpuesta --------------------------------#
+    #------------------------------------------------------------------------------#
+
+    c_imag1 = cv2.resize(img1, dsize = (300, 300), interpolation=cv2.INTER_CUBIC)
+    c_imag2 = cv2.resize(img2, dsize = (300, 300), interpolation=cv2.INTER_CUBIC)
+
+
+    transpuesta1 = cv2.transpose(c_imag1)
+    combinado160 = np.concatenate((c_imag1, transpuesta1, c_imag2), axis=1)
+    #combinado160 = cv2.cvtColor(combinado160, cv2.COLOR_BGR2RGB)
+    print('Operación Transpuesta')
+    cv2.imshow('combinado2', combinado160)
+    cv2.waitKey()
+    cv2.destroyWindow('combinado2')
+       
+    #---------------------------#ECUALIZACION Translación a fin ---------------------------------#
+    #ECUALIZACION Translación a fin
+    trans_ecu_img2 = cv2.cvtColor(transpuesta1,cv2.COLOR_BGR2YUV)
+    trans_ecu_img2[:,:,0] = cv2.equalizeHist(trans_ecu_img2[:,:,0])
+    trans_res_ecu_img= cv2.cvtColor(trans_ecu_img2,cv2.COLOR_YUV2BGR)
+
+
+    cv2.imshow('Ecualizacion_Transpuesta',trans_res_ecu_img) #MUESTRA IMAGEN ECUALIZADA DE LA IMAGEN 1
+
+
+    #---------------------------#HISTOGRAMAS Translación a fin---------------------------------#
+    #HISTOGRAMAS Translación a fin
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        trans_hist_img1 = cv2.calcHist([trans], [i], None, [256], [0, 256])
+        plt.plot(trans_hist_img1, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma Transpuesta')
+    plt.show()
+
+
+
+    #---------------------------#HISTOGRAMAS DE LA ECUALIZACION IMAGEN 1---------------------------------#
+    #HISTOGRAMA DE LA ECUALIZACION IMAGEN 1
+    plt.figure(figsize=(4, 3))
+    for i, c in enumerate(color): 
+        trans_hist_ecu_img = cv2.calcHist([trans_res_ecu_img], [i], None, [256], [0, 256])
+        plt.plot(trans_hist_ecu_img, color = c)
+        plt.xlim([0,256])
+
+    plt.title('Histograma de la ecualizacion Transpuesta')
+    plt.show()
+
+
+    cv2.waitKey(0) #Retardo
+    cv2.destroyWindow('Ecualizacion_Transpuesta')
+'''
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+#--------------------------------------------------------------------------------------------#
+'''
+def Perspectiva(c_imag1,c_imag2):
+    # Es el de Perspectiva + imagen 1
+    rows1, cols1, ch = c_imag1.shape
+    pts1 = np.float32([[0, 0], [300, 0], [0, 300],  [300, 300]])
+    pts2 = np.float32([[70, 70], [230, 70], [0, 300], [300, 300]])
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+
+    persp = cv2.warpPerspective(c_imag1, M, (cols1, rows1))
+
+
+    proyeccion = persp + c_imag1
+    combinado17 = np.concatenate((c_imag1, proyeccion, c_imag2), axis=1)
+    #combinado17 = cv2.cvtColor(combinado17, cv2.COLOR_BGR2RGB)
+    print('Operación Proyección')
+    cv2.imshow('combinado2', combinado17)
+    cv2.waitKey()
+    cv2.destroyWindow('combinado2')
+'''
+
+    #Lectura de imagenes
+
+img1 = cv2.imread('girasol1.png')
+img2 = cv2.imread('girasol2.png')
+
+    #Dimencionamiento en bruto
+c_imag1 = cv2.resize(img1, dsize = (300, 350), interpolation=cv2.INTER_CUBIC)
+c_imag2 = cv2.resize(img2, dsize = (300, 350), interpolation=cv2.INTER_CUBIC)
+
+color = ('r','g','b')
+
+cv2.imshow('Girasol1',c_imag1)
+cv2.imshow('Girasol2',c_imag2)
+
+
+#imag1(c_imag1,c_imag2)
+#imag2(c_imag1,c_imag2)
+
+#-----------------------------#
+#SUMA(c_imag1,c_imag2)
+#SUMA2(c_imag1,c_imag2)
+#SUMA3(c_imag1,c_imag2)
+#-----------------------------#
+#RESTA(c_imag1,c_imag2)
+#RESTA2(c_imag1,c_imag2)
+#RESTA3(c_imag1,c_imag2)
+#-----------------------------#
+#Division(c_imag1,c_imag2)
+#Division2(c_imag1,c_imag2)
+#-----------------------------#
+#Multiplicacion(c_imag1,c_imag2)
+#Multiplicacion2(c_imag1,c_imag2)
+#-----------------------------3
+#Logaritmo(c_imag1,c_imag2)
+
+Raiz(c_imag1,c_imag2)
+#Escala de grises
+
+#Derivada(c_imag1,c_imag2)
+#-----------------------------#
+#Potencia(c_imag1,c_imag2)
+#Potencia2(c_imag1,c_imag2)
+#Potencia3(c_imag1,c_imag2)
+#-----------------------------#
+#Conjuncion(c_imag1,c_imag2)
+
+#Disyuncion(c_imag1,c_imag2)
+#-----------------------------#
+#Negacion(c_imag1,c_imag2)
+#Negacion2(c_imag1,c_imag2)
+
+#Translación(c_imag1,c_imag2)
+
+#Rescalado(c_imag1,c_imag2)
+#-----------------------------#
+#Translaciónafin(c_imag1,c_imag2)
+#Translaciónafin2(c_imag1,c_imag2)
+#Translaciónafin3(c_imag1,c_imag2)
+#-----------------------------#
+
+#Rotación(c_imag1,c_imag2)
+#Rotación2(c_imag1,c_imag2)
+
+#Transpuesta(c_imag1,c_imag2)
+#Perspectiva(c_imag1,c_imag2)
+
